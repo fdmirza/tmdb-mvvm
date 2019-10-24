@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="viewModel" type="com.tintash.themoviedb.viewmodel.MainViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+        tools:context=".view.MainActivity">
+
+
+        <Button
+            android:id="@+id/btnDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:onClick="@{()->viewModel.selectDateFilter()}"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnType"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            app:placeholder_text="Please select"
+            android:id="@+id/btnType"
+            android:layout_width="0dp"
+            android:onClick="@{()->viewModel.selectMovieType()}"
+            android:text="Movie Type"
+            android:enabled="false"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/btnDate"
+            app:layout_constraintEnd_toStartOf="@+id/btnDate"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:expansion_style="drawer"
+            app:layout_constraintTop_toTopOf="@+id/btnDate" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:show="@{viewModel.showProgress}" />
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMovies"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnDate" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
